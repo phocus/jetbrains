@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.phisch.jetbrains.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.phisch.jetbrains.MyBundle
 
 class MyApplicationService {
 
