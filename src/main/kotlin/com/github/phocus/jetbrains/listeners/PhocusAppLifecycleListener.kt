@@ -12,6 +12,7 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
     override fun appFrameCreated(commandLineArgs: List<String?>) {
         disableInternalDecoratorBorder()
         setNavBarHeight(34)
+        setToolWindowHeaderHeight(34)
     }
 
     /**
@@ -34,6 +35,18 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
      */
     private fun setNavBarHeight(height:Int) {
         overWriteFinalStaticField(NavBarUIManager::class.java, "DARCULA", NavBarUI(height))
+    }
+
+    /**
+     * Sets the tool window header height by forcing a preferred height.
+     *
+     * @see com.intellij.openapi.wm.impl.ToolWindowHeader.getPreferredSize
+     */
+    private fun setToolWindowHeaderHeight(height: Int) {
+        val ctClass = ClassPool(true)["com.intellij.openapi.wm.impl.ToolWindowHeader"]
+        ctClass.getDeclaredMethod("getPreferredSize")
+                .setBody("{ return new java.awt.Dimension(super.getPreferredSize().width, com.intellij.util.ui.JBUI.scale($height)); }")
+        ctClass.toClass()
     }
 
     /**
