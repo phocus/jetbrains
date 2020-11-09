@@ -3,9 +3,11 @@ package com.github.phocus.jetbrains.listeners
 import com.github.phocus.jetbrains.ui.NavBarUI
 import com.intellij.ide.AppLifecycleListener
 import com.intellij.ide.navigationToolbar.ui.NavBarUIManager
+import com.intellij.util.ui.JBUI
 import javassist.*
 import org.jetbrains.annotations.NonNls
 import java.lang.reflect.Field
+import javax.swing.UIManager
 
 object PhocusAppLifecycleListener : AppLifecycleListener {
 
@@ -14,6 +16,7 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
         setNavBarHeight(34)
         setToolWindowHeaderHeight(34)
         setSingleHeightTabsHeight(34)
+        setTreeRowHeight(28)
     }
 
     /**
@@ -62,6 +65,13 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
         ctClass.toClass()
     }
 
+    /**
+     * Sets the tree row height which currently can't be set in the theme.
+     * Please fix @Jetbrains
+     */
+    private fun setTreeRowHeight(height: Int) {
+        UIManager.put("Tree.rowHeight", JBUI.scale(height))
+    }
 
     /**
      * Overwrites a static final fields value
