@@ -15,13 +15,17 @@ import javax.swing.UIManager
 
 object PhocusAppLifecycleListener : AppLifecycleListener {
 
+    private const val barHeights = 34
+    private const val treeRowHeight = 28
+    private const val scrollBarArc = 7
+
     override fun appFrameCreated(commandLineArgs: List<String?>) {
         disableInternalDecoratorBorder()
-        setNavBarHeight(34)
-        setToolWindowHeaderHeight(34)
-        setSingleHeightTabsHeight(34)
-        setTreeRowHeight(28)
-        setScrollbarArc(7)
+        setNavBarHeight(this.barHeights)
+        setToolWindowHeaderHeight(this.barHeights)
+        setSingleHeightTabsHeight(this.barHeights)
+        setTreeRowHeight(this.treeRowHeight)
+        setScrollbarArc(this.scrollBarArc)
     }
 
     /**
@@ -33,8 +37,7 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
     private fun disableInternalDecoratorBorder() {
         val cp = ClassPool(true)
         val ctClass = cp["com.intellij.openapi.wm.impl.InternalDecorator\$InnerPanelBorder"]
-        ctClass.getDeclaredMethod("getBorderInsets")
-                .setBody("{ return new java.awt.Insets(0, 0, 0, 0); }")
+        ctClass.getDeclaredMethod("getBorderInsets").setBody("{ return new java.awt.Insets(0, 0, 0, 0); }")
         ctClass.toClass()
     }
 
@@ -53,8 +56,12 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
      */
     private fun setToolWindowHeaderHeight(height: Int) {
         val ctClass = ClassPool(true)["com.intellij.openapi.wm.impl.ToolWindowHeader"]
-        ctClass.getDeclaredMethod("getPreferredSize")
-                .setBody("{ return new java.awt.Dimension(super.getPreferredSize().width, com.intellij.util.ui.JBUI.scale($height)); }")
+        ctClass.getDeclaredMethod("getPreferredSize").setBody(
+            """{ return new java.awt.Dimension(
+                    super.getPreferredSize().width,
+                    com.intellij.util.ui.JBUI.scale($height));}
+            """.trimIndent()
+        )
         ctClass.toClass()
     }
 
@@ -66,7 +73,7 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
     private fun setSingleHeightTabsHeight(height: Int) {
         val ctClass = ClassPool(true)["com.intellij.ui.tabs.impl.SingleHeightTabs\$SingleHeightLabel"]
         ctClass.getDeclaredMethod("getPreferredHeight")
-                .setBody("{ return com.intellij.util.ui.JBUI.scale($height); }")
+            .setBody("{ return com.intellij.util.ui.JBUI.scale($height); }")
         ctClass.toClass()
     }
 
@@ -86,13 +93,21 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
     private fun setScrollbarArc(arc: Int) {
         if (SystemInfoRt.isMac) return
         val ctClass = ClassPool(true)["com.intellij.ui.components.ScrollBarPainter\$Thumb"]
-        ctClass.getDeclaredMethod("paint").instrument(object : ExprEditor() {
-            override fun edit(m: MethodCall) {
-                if (m.methodName == "paint") {
-                    m.replace("{ $2 += 1; $3 += 1; $4 -= 2; $5 -= 2; $6 = com.intellij.util.ui.JBUI.scale($arc); \$proceed($$); }")
+        ctClass.getDeclaredMethod("paint").instrument(
+            object : ExprEditor() {
+                override fun edit(m: MethodCall) {
+                    if (m.methodName == "paint") {
+                        m.replace(
+                            """{
+                                $2 += 1; $3 += 1; $4 -= 2; $5 -= 2;
+                                $6 = com.intellij.util.ui.JBUI.scale($arc);
+                                ${'$'}proceed($$);}
+                            """.trimIndent()
+                        )
+                    }
                 }
             }
-        })
+        )
         ctClass.toClass()
     }
 
@@ -115,5 +130,4 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
             }
         }
     }
-
 }
