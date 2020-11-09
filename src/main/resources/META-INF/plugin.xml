@@ -7,6 +7,10 @@
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
+    <applicationListeners>
+        <listener class="com.github.phocus.jetbrains.listeners.PhocusAppLifecycleListener" topic="com.intellij.ide.AppLifecycleListener"/>
+    </applicationListeners>
+
     <extensions defaultExtensionNs="com.intellij">
         <themeProvider id="5c54ae80-594c-4a85-ba5f-fac8b009ec58" path="/themes/phocus.theme.json"/>
     </extensions>
