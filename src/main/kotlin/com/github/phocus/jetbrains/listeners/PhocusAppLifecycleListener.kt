@@ -13,6 +13,7 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
         disableInternalDecoratorBorder()
         setNavBarHeight(34)
         setToolWindowHeaderHeight(34)
+        setSingleHeightTabsHeight(34)
     }
 
     /**
@@ -48,6 +49,19 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
                 .setBody("{ return new java.awt.Dimension(super.getPreferredSize().width, com.intellij.util.ui.JBUI.scale($height)); }")
         ctClass.toClass()
     }
+
+    /**
+     * Sets the editor tabs height, by forcing a preferred height.
+     *
+     * @see com.intellij.ui.tabs.impl.SingleHeightTabs.SingleHeightLabel.getPreferredHeight
+     */
+    private fun setSingleHeightTabsHeight(height: Int) {
+        val ctClass = ClassPool(true)["com.intellij.ui.tabs.impl.SingleHeightTabs\$SingleHeightLabel"]
+        ctClass.getDeclaredMethod("getPreferredHeight")
+                .setBody("{ return com.intellij.util.ui.JBUI.scale($height); }")
+        ctClass.toClass()
+    }
+
 
     /**
      * Overwrites a static final fields value
