@@ -42,6 +42,7 @@ repositories {
     jcenter()
 }
 dependencies {
+    implementation("org.javassist:javassist:3.27.0-GA")
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.14.2")
 }
 
