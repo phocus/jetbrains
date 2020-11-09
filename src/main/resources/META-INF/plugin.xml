@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.github.phisch.jetbrains</id>
-    <name>jetbrains</name>
+    <name>Phocus Theme</name>
     <vendor>phisch</vendor>
 
     <!-- Product and plugin compatibility requirements -->
@@ -8,12 +8,6 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.phisch.jetbrains.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.phisch.jetbrains.services.MyProjectService"/>
+        <themeProvider id="5c54ae80-594c-4a85-ba5f-fac8b009ec58" path="/themes/phocus.theme.json"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.phisch.jetbrains.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>
