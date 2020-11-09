@@ -103,7 +103,7 @@
       "pressedBorderColor": "transparent"
     },
     "Borders": {
-      "color": "background-1-2",
+      "color": "transparent",
       "ContrastBorderColor": "transparent"
     },
     "Button": {
