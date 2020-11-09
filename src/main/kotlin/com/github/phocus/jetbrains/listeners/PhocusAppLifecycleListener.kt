@@ -3,8 +3,12 @@ package com.github.phocus.jetbrains.listeners
 import com.github.phocus.jetbrains.ui.NavBarUI
 import com.intellij.ide.AppLifecycleListener
 import com.intellij.ide.navigationToolbar.ui.NavBarUIManager
+import com.intellij.openapi.util.SystemInfoRt
 import com.intellij.util.ui.JBUI
-import javassist.*
+import javassist.ClassPool
+import javassist.Modifier
+import javassist.expr.ExprEditor
+import javassist.expr.MethodCall
 import org.jetbrains.annotations.NonNls
 import java.lang.reflect.Field
 import javax.swing.UIManager
@@ -17,6 +21,7 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
         setToolWindowHeaderHeight(34)
         setSingleHeightTabsHeight(34)
         setTreeRowHeight(28)
+        setScrollbarArc(7)
     }
 
     /**
@@ -37,7 +42,7 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
      * Sets the navbar height (breadcrumb like thing) by providing a
      * custom NavBarUI implementation instance.
      */
-    private fun setNavBarHeight(height:Int) {
+    private fun setNavBarHeight(height: Int) {
         overWriteFinalStaticField(NavBarUIManager::class.java, "DARCULA", NavBarUI(height))
     }
 
@@ -71,6 +76,24 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
      */
     private fun setTreeRowHeight(height: Int) {
         UIManager.put("Tree.rowHeight", JBUI.scale(height))
+    }
+
+    /**
+     * Overwrites paint call to set the arc parameter and add some small paddings.
+     *
+     * @see com.intellij.ui.components.ScrollBarPainter.Thumb.paint
+     */
+    private fun setScrollbarArc(arc: Int) {
+        if (SystemInfoRt.isMac) return
+        val ctClass = ClassPool(true)["com.intellij.ui.components.ScrollBarPainter\$Thumb"]
+        ctClass.getDeclaredMethod("paint").instrument(object : ExprEditor() {
+            override fun edit(m: MethodCall) {
+                if (m.methodName == "paint") {
+                    m.replace("{ $2 += 1; $3 += 1; $4 -= 2; $5 -= 2; $6 = com.intellij.util.ui.JBUI.scale($arc); \$proceed($$); }")
+                }
+            }
+        })
+        ctClass.toClass()
     }
 
     /**
