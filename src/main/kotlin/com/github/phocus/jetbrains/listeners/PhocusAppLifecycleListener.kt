@@ -42,14 +42,16 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
         if (backgroundColor is Color) {
             val ctClass = ClassPool(true)["com.intellij.openapi.wm.impl.Stripe"]
             ctClass.getDeclaredMethod("paintComponent").setBody(
-                """{
-                    $1.setColor(new java.awt.Color(
-                        ${backgroundColor.red},
-                        ${backgroundColor.green},
-                        ${backgroundColor.blue}
-                    ));
-                    $1.fillRect(0, 0, getWidth(), getHeight());
-                }""".trimIndent()
+                """
+                    {
+                        $1.setColor(new java.awt.Color(
+                            ${backgroundColor.red},
+                            ${backgroundColor.green},
+                            ${backgroundColor.blue}
+                        ));
+                        $1.fillRect(0, 0, getWidth(), getHeight());
+                    }
+                """.trimIndent()
             )
             ctClass.toClass()
         }
@@ -68,15 +70,17 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
                     override fun edit(m: MethodCall) {
                         if (m.methodName == "setBorder") {
                             m.replace(
-                                """{
-                                    $1 = com.intellij.util.ui.JBUI.Borders.empty(
-                                        ${padding.top},
-                                        ${padding.left},
-                                        ${padding.bottom},
-                                        ${padding.right}
-                                    );
-                                    ${'$'}proceed($$);
-                                }"""
+                                """
+                                    {
+                                        $1 = com.intellij.util.ui.JBUI.Borders.empty(
+                                            ${padding.top},
+                                            ${padding.left},
+                                            ${padding.bottom},
+                                            ${padding.right}
+                                        );
+                                        ${'$'}proceed($$);
+                                    }
+                                """
                             )
                         }
                     }
@@ -95,10 +99,14 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
         if (height is Int) {
             val ctClass = ClassPool(true)["com.intellij.openapi.wm.impl.ToolWindowHeader"]
             ctClass.getDeclaredMethod("getPreferredSize").setBody(
-                """{ return new java.awt.Dimension(
-                    super.getPreferredSize().width,
-                    com.intellij.util.ui.JBUI.scale($height));}
-            """.trimIndent()
+                """
+                    {
+                        return new java.awt.Dimension(
+                            super.getPreferredSize().width,
+                            com.intellij.util.ui.JBUI.scale($height)
+                        );
+                    }
+                """.trimIndent()
             )
             ctClass.toClass()
         }
@@ -145,10 +153,12 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
                     override fun edit(m: MethodCall) {
                         if (m.methodName == "paint") {
                             m.replace(
-                                """{
-                                    $2 += 1; $3 += 1; $4 -= 2; $5 -= 2;
-                                    $6 = com.intellij.util.ui.JBUI.scale($arc);
-                                    ${'$'}proceed($$);}
+                                """
+                                    {
+                                        $2 += 1; $3 += 1; $4 -= 2; $5 -= 2;
+                                        $6 = com.intellij.util.ui.JBUI.scale($arc);
+                                        ${'$'}proceed($$);
+                                    }
                                 """.trimIndent()
                             )
                         }
