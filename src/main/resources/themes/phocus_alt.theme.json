@@ -105,7 +105,7 @@
     },
     "Borders": {
       "color": "background-3",
-      "ContrastBorderColor": "background-5"
+      "ContrastBorderColor": "background-4"
     },
     "Button": {
       "arc": 6,
@@ -137,12 +137,11 @@
     "EditorTabs": {
       "background": "background-3",
       "borderColor": "transparent",
-      "hoverBackground": "background-4",
+      "hoverBackground": "hover",
       "inactiveUnderlineColor": "highlight",
       "underlineColor": "color-7",
-      "underlinedTabBackground": "background-4",
-      "underlineHeight": 2,
-      "height": 36
+      "underlinedTabBackground": "selected",
+      "underlineHeight": 2
     },
     "FileColor": {
       "Blue": "color-6-fade",
@@ -194,8 +193,7 @@
     "ScrollBar": {
       "background": "transparent",
       "thumb": "#ff0000",
-      "trackColor": "#ff0000",
-      "thumbArc": 6
+      "trackColor": "#ff0000"
     },
     "ScrollPane": {
       "background": "#00ffff"
@@ -229,9 +227,6 @@
       "selectionBackground": "#323232",
       "selectionForeground": "#FFFFFF"
     },
-    "NavBar": {
-      "padding": "8,3,9,3"
-    },
     "ToolWindow": {
       "Button": {
         "hoverBackground": "highlight",
@@ -258,18 +253,10 @@
       "hash": "highlight",
       "selectionBackground": "highlight",
       "selectionForeground": "foreground",
-      "selectionInactiveBackground": "highlight",
-      "height": 30
+      "selectionInactiveBackground": "highlight"
     },
     "ToolWindow.Header": {
-      "borderColor": "#ff000000",
-      "height": 36
-    },
-    "Stripe": {
-      "background": "background-5",
-      "Button": {
-        "padding": "6,6,6,6"
-      }
+      "borderColor": "#ff000000"
     }
   }
 }
