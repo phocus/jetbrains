@@ -33,6 +33,8 @@
     "highlight": "#ffffff0f",
     "hover": "#ffffff0f",
     "selected": "#ffffff15",
+    "elevate-1": "#ffffff08",
+    "elevate-2": "#ffffff0f",
     "transparent": "#00000000"
   },
   "icons": {
@@ -264,10 +266,10 @@
     "Tree": {
       "background": "#0f0f0f",
       "foreground": "foreground-fade",
-      "hash": "highlight",
-      "selectionBackground": "highlight",
+      "hash": "background-3",
+      "selectionBackground": "elevate-2",
       "selectionForeground": "foreground",
-      "selectionInactiveBackground": "highlight",
+      "selectionInactiveBackground": "elevate-1",
       "height": 30
     }
   }
