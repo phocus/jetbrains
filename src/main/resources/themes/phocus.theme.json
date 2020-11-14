@@ -30,11 +30,8 @@
     "color-7-fade": "#8b6cd910",
     "color-8": "#d96cd9",
     "color-8-fade": "#d96cd910",
-    "highlight": "#ffffff0f",
-    "hover": "#ffffff0f",
-    "selected": "#ffffff15",
-    "elevate-1": "#ffffff08",
-    "elevate-2": "#ffffff0f",
+    "elevate-1": "#ffffff10",
+    "elevate-2": "#ffffff20",
     "transparent": "#00000000"
   },
   "icons": {
@@ -72,15 +69,15 @@
   },
   "ui": {
     "*": {
-      "select": "selected",
+      "select": "elevate-1",
       "foreground": "foreground",
       "borderColor": "transparent",
-      "separatorColor": "highlight"
+      "separatorColor": "elevate-1"
     },
     "ActionButton": {
-      "hoverBackground": "highlight",
+      "hoverBackground": "elevate-1",
       "hoverBorderColor": "transparent",
-      "pressedBackground": "selected",
+      "pressedBackground": "elevate-2",
       "pressedBorderColor": "transparent"
     },
     "Borders": {
@@ -91,17 +88,17 @@
       "arc": 6,
       "background": "transparent",
       "default": {
-        "endBackground": "highlight",
+        "endBackground": "elevate-1",
         "endBorderColor": "color-7",
         "focusColor": "color-7",
         "focusedBorderColor": "color-7",
-        "startBackground": "highlight",
+        "startBackground": "elevate-1",
         "startBorderColor": "color-7"
       },
-      "endBackground": "highlight",
+      "endBackground": "elevate-1",
       "endBorderColor": "transparent",
       "shadowColor": "transparent",
-      "startBackground": "highlight",
+      "startBackground": "elevate-1",
       "startBorderColor": "transparent"
     },
     "CheckBox": {
@@ -116,7 +113,7 @@
       "modifiedItemForeground": "color-1"
     },
     "ComboBoxButton": {
-      "background": "highlight"
+      "background": "elevate-1"
     },
     "Component": {
       "arc": 4,
@@ -128,10 +125,10 @@
     "EditorTabs": {
       "background": "background-3",
       "borderColor": "transparent",
-      "hoverBackground": "background-5",
-      "inactiveUnderlineColor": "hover",
+      "hoverBackground": "elevate-2",
+      "inactiveUnderlineColor": "elevate-2",
       "underlineColor": "color-7",
-      "underlinedTabBackground": "background-5",
+      "underlinedTabBackground": "background-4",
       "underlineHeight": 3,
       "height": 36
     },
@@ -149,8 +146,8 @@
     "List": {
       "background": "background-4",
       "dropLineColor": "color-4",
-      "selectionBackground": "highlight",
-      "selectionInactiveBackground": "highlight"
+      "selectionBackground": "elevate-2",
+      "selectionInactiveBackground": "elevate-1"
     },
     "Menu": {
       "background": "background-4",
@@ -211,16 +208,16 @@
         "background": "background-3"
       },
       "Tab": {
-        "selectedBackground": "highlight"
+        "selectedBackground": "color-1"
       }
     },
     "Separator": {
-      "separatorColor": "highlight"
+      "separatorColor": "elevate-1"
     },
     "Stripe": {
       "background": "background-5",
       "Button": {
-        "padding": "6,6,6,6"
+        "padding": "5,5,5,5"
       }
     },
     "TextArea": {
@@ -241,8 +238,8 @@
     },
     "ToolWindow": {
       "Button": {
-        "hoverBackground": "highlight",
-        "selectedBackground": "highlight",
+        "hoverBackground": "elevate-1",
+        "selectedBackground": "elevate-2",
         "selectedForeground": "#FFFFFF"
       },
       "Header": {
@@ -252,11 +249,11 @@
         "inactiveBackground": "background-3"
       },
       "HeaderTab": {
-        "hoverBackground": "hover",
-        "inactiveUnderlineColor": "highlight",
+        "hoverBackground": "elevate-2",
+        "inactiveUnderlineColor": "elevate-2",
         "underlineColor": "color-7",
-        "underlinedTabBackground": "selected",
-        "underlinedTabInactiveBackground": "selected",
+        "underlinedTabBackground": "background-4",
+        "underlinedTabInactiveBackground": "background-4",
         "underlineHeight": 3
       }
     },
