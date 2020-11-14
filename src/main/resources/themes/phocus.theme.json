@@ -69,28 +69,6 @@
     }
   },
   "ui": {
-    "CheckBox": {
-      "background": "transparent",
-      "select": "color-1"
-    },
-    "CheckBox.select": "color-1",
-    "CheckBox.foreground": "color-1",
-    "CheckBoxMenuItem.acceleratorForeground": "color-1",
-
-    "ComboBox.modifiedItemForeground": "color-1",
-    "Component.focusedBorderColor": "color-1",
-    "Component.focusColor": "color-1",
-
-    "Link": {
-      "activeForeground": "color-7"
-    },
-    "ToggleButton": {
-      "borderColor": "color-1",
-      "background": "color-3"
-    },
-    "RadioButton": {
-      "background": "transparent"
-    },
     "*": {
       "select": "selected",
       "foreground": "foreground",
@@ -124,24 +102,35 @@
       "startBackground": "highlight",
       "startBorderColor": "transparent"
     },
+    "CheckBox": {
+      "background": "transparent",
+      "foreground": "color-1",
+      "select": "color-1"
+    },
+    "CheckBoxMenuItem": {
+      "acceleratorForeground": "color-1"
+    },
+    "ComboBox": {
+      "modifiedItemForeground": "color-1"
+    },
     "ComboBoxButton": {
       "background": "highlight"
     },
     "Component": {
       "arc": 4,
       "borderColor": "transparent",
-      "focusColor": "color-7",
-      "focusedBorderColor": "transparent",
+      "focusColor": "color-1",
+      "focusedBorderColor": "color-1",
       "focusWidth": 1
     },
     "EditorTabs": {
       "background": "background-3",
       "borderColor": "transparent",
-      "hoverBackground": "background-4",
-      "inactiveUnderlineColor": "highlight",
+      "hoverBackground": "background-5",
+      "inactiveUnderlineColor": "hover",
       "underlineColor": "color-7",
-      "underlinedTabBackground": "background-4",
-      "underlineHeight": 2,
+      "underlinedTabBackground": "background-5",
+      "underlineHeight": 3,
       "height": 36
     },
     "FileColor": {
@@ -151,6 +140,9 @@
       "Rose": "color-1-fade",
       "Violet": "color-7-fade",
       "Yellow": "color-3-fade"
+    },
+    "Link": {
+      "activeForeground": "color-7"
     },
     "List": {
       "background": "background-4",
@@ -168,6 +160,9 @@
     "MenuItem": {
       "background": "#ff0000",
       "border": "4,4,4,4,000000"
+    },
+    "NavBar": {
+      "padding": "9,3,10,3"
     },
     "Notification": {
       "background": "background-4",
@@ -190,6 +185,9 @@
     },
     "PopupMenuSeparator": {
       "height": 1
+    },
+    "RadioButton": {
+      "background": "transparent"
     },
     "ScrollBar": {
       "background": "transparent",
@@ -217,6 +215,12 @@
     "Separator": {
       "separatorColor": "highlight"
     },
+    "Stripe": {
+      "background": "background-5",
+      "Button": {
+        "padding": "6,6,6,6"
+      }
+    },
     "TextArea": {
       "selectionBackground": "color-7",
       "selectionForeground": "foreground"
@@ -229,8 +233,9 @@
       "selectionBackground": "#323232",
       "selectionForeground": "#FFFFFF"
     },
-    "NavBar": {
-      "padding": "8,3,9,3"
+    "ToggleButton": {
+      "borderColor": "color-1",
+      "background": "color-3"
     },
     "ToolWindow": {
       "Button": {
@@ -239,18 +244,22 @@
         "selectedForeground": "#FFFFFF"
       },
       "Header": {
-        "background": "background-3",
         "borderColor": "transparent",
+        "height": 36,
+        "background": "background-3",
         "inactiveBackground": "background-3"
       },
       "HeaderTab": {
         "hoverBackground": "hover",
-        "inactiveUnderlineColor": "color-7",
+        "inactiveUnderlineColor": "highlight",
         "underlineColor": "color-7",
         "underlinedTabBackground": "selected",
         "underlinedTabInactiveBackground": "selected",
-        "underlineHeight": 2
+        "underlineHeight": 3
       }
+    },
+    "Tab": {
+      "overline": true
     },
     "Tree": {
       "background": "#0f0f0f",
@@ -260,16 +269,6 @@
       "selectionForeground": "foreground",
       "selectionInactiveBackground": "highlight",
       "height": 30
-    },
-    "ToolWindow.Header": {
-      "borderColor": "#ff000000",
-      "height": 36
-    },
-    "Stripe": {
-      "background": "background-5",
-      "Button": {
-        "padding": "6,6,6,6"
-      }
     }
   }
 }

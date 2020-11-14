@@ -15,6 +15,13 @@ import java.awt.Insets
 import java.lang.reflect.Field
 import javax.swing.UIManager
 
+/**
+ * This heavily uses instrumentation to do bytecode manipulation at runtime.
+ * Doing this is in general a bad idea, but since versions are fixed, and i want
+ * my IDE to look a certain way, i don't really care if this is ugly.
+ *
+ * But just don't use this code to learn from, it's bad!
+ */
 object PhocusAppLifecycleListener : AppLifecycleListener {
 
     override fun appFrameCreated(commandLineArgs: List<String?>) {
@@ -26,8 +33,32 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
         makeStripeButtonPaddingThemeable()
         makeStripeBackgroundThemeable()
         removeEditorTabsBorder()
+        allowTabOverline()
     }
 
+    /**
+     * Allows rendering overlines instead of underlines on tabs
+     * Can be set through `Tab.overline=true`
+     */
+    private fun allowTabOverline() {
+        UIManager.getBoolean("Tab.overline")
+        if (UIManager.getBoolean("Tab.overline")) {
+            val ctClass = ClassPool(true)["com.intellij.ui.tabs.impl.JBDefaultTabPainter"]
+            ctClass.getDeclaredMethod("underlineRectangle").setBody(
+                """
+                    {
+                        return new java.awt.Rectangle($2.x, $2.y, $2.width, $3);
+                    }
+                """.trimIndent()
+            )
+            ctClass.toClass()
+        }
+    }
+
+    /**
+     * This removes the awkward 1 pixel border above the editor tabs,
+     * making the tabs now the same height as the actual tab bar
+     */
     private fun removeEditorTabsBorder() {
         val ctClass = ClassPool(true)["com.intellij.ui.tabs.impl.JBEditorTabsBorder"]
         ctClass.getDeclaredMethod("getEffectiveBorder").setBody("{return new java.awt.Insets(0, 0, 0, 0);}")
