@@ -13,5 +13,6 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <themeProvider id="5c54ae80-594c-4a85-ba5f-fac8b009ec58" path="/themes/phocus.theme.json"/>
+        <themeProvider id="4cba2c7c-2f6b-4237-a94b-150657e2276b" path="/themes/phocus_alternative.theme.json"/>
     </extensions>
 </idea-plugin>

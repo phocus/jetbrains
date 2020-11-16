@@ -81,8 +81,8 @@
       "pressedBorderColor": "transparent"
     },
     "Borders": {
-      "color": "background-3",
-      "ContrastBorderColor": "background-5"
+      "color": "background-1-2",
+      "ContrastBorderColor": "background-4"
     },
     "Button": {
       "arc": 6,
@@ -118,8 +118,8 @@
     "Component": {
       "arc": 4,
       "borderColor": "transparent",
-      "focusColor": "color-1",
-      "focusedBorderColor": "color-1",
+      "focusColor": "color-7",
+      "focusedBorderColor": "transparent",
       "focusWidth": 1
     },
     "EditorTabs": {
@@ -141,7 +141,7 @@
       "Yellow": "color-3-fade"
     },
     "Link": {
-      "activeForeground": "color-7"
+      "activeForeground": "color-4"
     },
     "List": {
       "background": "background-4",
@@ -150,15 +150,15 @@
       "selectionInactiveBackground": "elevate-1"
     },
     "Menu": {
-      "background": "background-4",
-      "border": "4,4,4,4,000000"
+      "background": "background-2",
+      "border": "6,6,6,6"
     },
     "MenuBar": {
-      "border": "0,0,0,0,000000"
+      "border": "0,0,0,0"
     },
     "MenuItem": {
       "background": "#ff0000",
-      "border": "4,4,4,4,000000"
+      "border": "6,6,6,6"
     },
     "NavBar": {
       "padding": "9,3,10,3"
@@ -180,7 +180,7 @@
     },
     "PopupMenu": {
       "background": "background-4",
-      "border": "0,0,0,0,000000"
+      "border": "0,0,0,0"
     },
     "PopupMenuSeparator": {
       "height": 1
@@ -243,9 +243,9 @@
         "selectedForeground": "#FFFFFF"
       },
       "Header": {
-        "borderColor": "transparent",
-        "height": 36,
         "background": "background-3",
+        "height": 36,
+        "borderColor": "transparent",
         "inactiveBackground": "background-3"
       },
       "HeaderTab": {
@@ -261,7 +261,7 @@
       "overline": true
     },
     "Tree": {
-      "background": "#0f0f0f",
+      "background": "background-2",
       "foreground": "foreground-fade",
       "hash": "background-3",
       "selectionBackground": "elevate-2",

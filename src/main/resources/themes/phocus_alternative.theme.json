@@ -1,8 +1,8 @@
 {
-  "name": "phocus",
+  "name": "phocus_alternative",
   "dark": true,
   "author": "phisch",
-  "editorScheme": "/themes/phocus.xml",
+  "editorScheme": "/themes/phocus_alternative.xml",
   "colors": {
     "background-1": "#0a0a0a",
     "background-1-2": "#0f0f0f",
@@ -30,9 +30,8 @@
     "color-7-fade": "#8b6cd910",
     "color-8": "#d96cd9",
     "color-8-fade": "#d96cd910",
-    "highlight": "#ffffff0f",
-    "hover": "#ffffff0f",
-    "selected": "#ffffff15",
+    "elevate-1": "#ffffff10",
+    "elevate-2": "#ffffff20",
     "transparent": "#00000000"
   },
   "icons": {
@@ -69,79 +68,69 @@
     }
   },
   "ui": {
-    "CheckBox": {
-      "background": "transparent",
-      "select": "color-1"
-    },
-    "CheckBox.select": "color-1",
-    "CheckBox.foreground": "color-1",
-    "CheckBoxMenuItem.acceleratorForeground": "color-1",
-
-    "ComboBox.modifiedItemForeground": "color-1",
-    "Component.focusedBorderColor": "color-1",
-    "Component.focusColor": "color-1",
-
-    "Link": {
-      "activeForeground": "color-7"
-    },
-    "ToggleButton": {
-      "borderColor": "color-1",
-      "background": "color-3"
-    },
-    "RadioButton": {
-      "background": "transparent"
-    },
     "*": {
-      "select": "selected",
+      "select": "elevate-1",
       "foreground": "foreground",
       "borderColor": "transparent",
-      "separatorColor": "highlight"
+      "separatorColor": "elevate-1"
     },
     "ActionButton": {
-      "hoverBackground": "highlight",
+      "hoverBackground": "elevate-1",
       "hoverBorderColor": "transparent",
-      "pressedBackground": "selected",
+      "pressedBackground": "elevate-2",
       "pressedBorderColor": "transparent"
     },
     "Borders": {
-      "color": "background-3",
-      "ContrastBorderColor": "background-4"
+      "color": "background-2",
+      "ContrastBorderColor": "background-5"
     },
     "Button": {
       "arc": 6,
       "background": "transparent",
       "default": {
-        "endBackground": "highlight",
+        "endBackground": "elevate-1",
         "endBorderColor": "color-7",
         "focusColor": "color-7",
         "focusedBorderColor": "color-7",
-        "startBackground": "highlight",
+        "startBackground": "elevate-1",
         "startBorderColor": "color-7"
       },
-      "endBackground": "highlight",
+      "endBackground": "elevate-1",
       "endBorderColor": "transparent",
       "shadowColor": "transparent",
-      "startBackground": "highlight",
+      "startBackground": "elevate-1",
       "startBorderColor": "transparent"
     },
+    "CheckBox": {
+      "background": "transparent",
+      "foreground": "color-1",
+      "select": "color-1"
+    },
+    "CheckBoxMenuItem": {
+      "acceleratorForeground": "color-1"
+    },
+    "ComboBox": {
+      "modifiedItemForeground": "color-1"
+    },
     "ComboBoxButton": {
-      "background": "highlight"
+      "background": "elevate-1"
     },
     "Component": {
       "arc": 4,
       "borderColor": "transparent",
-      "focusColor": "color-7",
-      "focusedBorderColor": "transparent",
+      "focusColor": "color-1",
+      "focusedBorderColor": "color-1",
       "focusWidth": 1
     },
     "EditorTabs": {
-      "background": "background-3",
+      "background": "background-4",
       "borderColor": "transparent",
-      "hoverBackground": "hover",
-      "inactiveUnderlineColor": "highlight",
+      "hoverBackground": "elevate-2",
+      "inactiveUnderlineColor": "elevate-2",
       "underlineColor": "color-7",
-      "underlinedTabBackground": "selected",
-      "underlineHeight": 2
+      "underlinedTabBackground": "background-3",
+      "underlineHeight": 3,
+      "height": 36
     },
     "FileColor": {
       "Blue": "color-6-fade",
@@ -151,29 +140,35 @@
       "Violet": "color-7-fade",
       "Yellow": "color-3-fade"
     },
+    "Link": {
+      "activeForeground": "color-4"
+    },
     "List": {
       "background": "background-4",
       "dropLineColor": "color-4",
-      "selectionBackground": "highlight",
-      "selectionInactiveBackground": "highlight"
+      "selectionBackground": "elevate-2",
+      "selectionInactiveBackground": "elevate-1"
     },
     "Menu": {
-      "background": "background-4",
-      "border": "4,4,4,4,000000"
+      "background": "background-2",
+      "border": "6,6,6,6"
     },
     "MenuBar": {
-      "border": "0,0,0,0,000000"
+      "border": "0,0,0,0"
     },
     "MenuItem": {
       "background": "#ff0000",
-      "border": "4,4,4,4,000000"
+      "border": "6,6,6,6"
+    },
+    "NavBar": {
+      "padding": "9,3,10,3"
     },
     "Notification": {
       "background": "background-4",
       "borderColor": "transparent"
     },
     "Panel": {
-      "background": "background-4"
+      "background": "background-3"
     },
     "Popup": {
       "Advertiser": {
@@ -185,15 +180,19 @@
     },
     "PopupMenu": {
       "background": "background-4",
-      "border": "0,0,0,0,000000"
+      "border": "0,0,0,0"
     },
     "PopupMenuSeparator": {
       "height": 1
     },
+    "RadioButton": {
+      "background": "transparent"
+    },
     "ScrollBar": {
       "background": "transparent",
       "thumb": "#ff0000",
-      "trackColor": "#ff0000"
+      "trackColor": "#ff0000",
+      "thumbArc": 6
     },
     "ScrollPane": {
       "background": "#00ffff"
@@ -209,11 +208,17 @@
         "background": "background-3"
       },
       "Tab": {
-        "selectedBackground": "highlight"
+        "selectedBackground": "color-1"
       }
     },
     "Separator": {
-      "separatorColor": "highlight"
+      "separatorColor": "elevate-1"
+    },
+    "Stripe": {
+      "background": "background-5",
+      "Button": {
+        "padding": "5,5,5,5"
+      }
     },
     "TextArea": {
       "selectionBackground": "color-7",
@@ -227,36 +232,42 @@
       "selectionBackground": "#323232",
       "selectionForeground": "#FFFFFF"
     },
+    "ToggleButton": {
+      "borderColor": "color-1",
+      "background": "color-3"
+    },
     "ToolWindow": {
       "Button": {
-        "hoverBackground": "highlight",
-        "selectedBackground": "highlight",
+        "hoverBackground": "elevate-1",
+        "selectedBackground": "elevate-2",
         "selectedForeground": "#FFFFFF"
       },
       "Header": {
-        "background": "background-3",
         "borderColor": "transparent",
-        "inactiveBackground": "background-3"
+        "height": 36,
+        "background": "background-4",
+        "inactiveBackground": "background-4"
       },
       "HeaderTab": {
-        "hoverBackground": "hover",
-        "inactiveUnderlineColor": "color-7",
+        "hoverBackground": "elevate-2",
+        "inactiveUnderlineColor": "elevate-2",
         "underlineColor": "color-7",
-        "underlinedTabBackground": "selected",
-        "underlinedTabInactiveBackground": "selected",
-        "underlineHeight": 2
+        "underlinedTabBackground": "background-4",
+        "underlinedTabInactiveBackground": "background-4",
+        "underlineHeight": 3
       }
     },
-    "Tree": {
-      "background": "#0f0f0f",
-      "foreground": "foreground-fade",
-      "hash": "highlight",
-      "selectionBackground": "highlight",
-      "selectionForeground": "foreground",
-      "selectionInactiveBackground": "highlight"
+    "Tab": {
+      "overline": true
     },
-    "ToolWindow.Header": {
-      "borderColor": "#ff000000"
+    "Tree": {
+      "background": "background-1",
+      "foreground": "foreground-fade",
+      "hash": "background-2",
+      "selectionBackground": "elevate-2",
+      "selectionForeground": "foreground",
+      "selectionInactiveBackground": "elevate-1",
+      "height": 30
     }
   }
 }
