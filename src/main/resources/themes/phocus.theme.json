@@ -4,42 +4,48 @@
   "author": "phisch",
   "editorScheme": "/themes/phocus.xml",
   "colors": {
-    "background-1": "#0a0a0a",
-    "background-1-2": "#0f0f0f",
-    "background-2": "#141414",
-    "background-2-3": "#1a1a1a",
-    "background-3": "#1f1f1f",
-    "background-3-4": "#242424",
-    "background-4": "#292929",
-    "background-5": "#333333",
+    "transparent": "#00000000",
     "foreground": "#ffffffaa",
-    "foreground-fade": "#ffffff40",
-    "color-1": "#d96c6c",
-    "color-1-fade": "#d96c6c10",
-    "color-2": "#d99a6c",
-    "color-2-fade": "#d99a6c10",
-    "color-3": "#d9d06c",
-    "color-3-fade": "#d9d06c10",
-    "color-4": "#6cd96c",
-    "color-4-fade": "#6cd96c10",
-    "color-5": "#6cd0d9",
-    "color-5-fade": "#6cd0d910",
-    "color-6": "#6c6cd9",
-    "color-6-fade": "#6c6cd910",
-    "color-7": "#8b6cd9",
-    "color-7-fade": "#8b6cd910",
-    "color-8": "#d96cd9",
-    "color-8-fade": "#d96cd910",
+    "foreground-tint": "#ffffff40",
+    "background-1": "#080808",
+    "background-1-2": "#0d0d0d",
+    "background-2": "#121212",
+    "background-3": "#1c1c1c",
+    "background-4": "#262626",
+    "background-5": "#303030",
     "elevate-1": "#ffffff10",
     "elevate-2": "#ffffff20",
-    "transparent": "#00000000"
+    "red": "#e65c5c",
+    "orange": "#e6955c",
+    "yellow": "#e6da5c",
+    "green": "#5ce65c",
+    "cyan": "#5ce6e6",
+    "blue": "#5c8ae6",
+    "purple": "#835ce6",
+    "pink": "#e65ce6",
+    "red-tint": "#e65c5c10",
+    "orange-tint": "#e6955c10",
+    "yellow-tint": "#e6da5c10",
+    "green-tint": "#5ce65c10",
+    "cyan-tint": "#5ce6e610",
+    "blue-tint": "#5c8ae610",
+    "purple-tint": "#835ce610",
+    "pink-tint": "#e65ce610",
+    "red-faint": "#cc7a7a",
+    "orange-faint": "#cca37a",
+    "yellow-faint": "#ccc57a",
+    "green-faint": "#7acc7a",
+    "cyan-faint": "#7acccc",
+    "blue-faint": "#7a96cc",
+    "purple-faint": "#927acc",
+    "pink-faint": "#cc7acc"
   },
   "icons": {
     "ColorPalette": {
-      "Actions.Red": "#d96c6c",
-      "Actions.Yellow": "#d9d06c",
-      "Actions.Green": "#6cd96c",
-      "Actions.Blue": "#6cd0d9",
+      "Actions.Red": "#e65c5c",
+      "Actions.Yellow": "#e6da5c",
+      "Actions.Green": "#5ce65c",
+      "Actions.Blue": "#5ce6e6",
       "Actions.Grey": "#ffffff40",
       "Actions.GreyInline": "#ff0000",
       "Actions.GreyInline.Dark": "#ffffff50",
@@ -81,7 +87,7 @@
       "pressedBorderColor": "transparent"
     },
     "Borders": {
-      "color": "background-1-2",
+      "color": "background-3",
       "ContrastBorderColor": "background-4"
     },
     "Button": {
@@ -89,11 +95,11 @@
       "background": "transparent",
       "default": {
         "endBackground": "elevate-1",
-        "endBorderColor": "color-7",
-        "focusColor": "color-7",
-        "focusedBorderColor": "color-7",
+        "endBorderColor": "purple",
+        "focusColor": "purple",
+        "focusedBorderColor": "purple",
         "startBackground": "elevate-1",
-        "startBorderColor": "color-7"
+        "startBorderColor": "purple"
       },
       "endBackground": "elevate-1",
       "endBorderColor": "transparent",
@@ -102,15 +108,7 @@
       "startBorderColor": "transparent"
     },
     "CheckBox": {
-      "background": "transparent",
-      "foreground": "color-1",
-      "select": "color-1"
-    },
-    "CheckBoxMenuItem": {
-      "acceleratorForeground": "color-1"
-    },
-    "ComboBox": {
-      "modifiedItemForeground": "color-1"
+      "background": "transparent"
     },
     "ComboBoxButton": {
       "background": "elevate-1"
@@ -118,34 +116,34 @@
     "Component": {
       "arc": 4,
       "borderColor": "transparent",
-      "focusColor": "color-7",
+      "focusColor": "purple",
       "focusedBorderColor": "transparent",
       "focusWidth": 1
     },
     "EditorTabs": {
       "background": "background-3",
       "borderColor": "transparent",
-      "hoverBackground": "elevate-2",
+      "hoverBackground": "background-5",
       "inactiveUnderlineColor": "elevate-2",
-      "underlineColor": "color-7",
-      "underlinedTabBackground": "background-4",
+      "underlineColor": "purple",
+      "underlinedTabBackground": "background-5",
       "underlineHeight": 3,
       "height": 36
     },
     "FileColor": {
-      "Blue": "color-6-fade",
-      "Green": "color-4-fade",
-      "Orange": "color-2-fade",
-      "Rose": "color-1-fade",
-      "Violet": "color-7-fade",
-      "Yellow": "color-3-fade"
+      "Blue": "blue-tint",
+      "Green": "green-tint",
+      "Orange": "orange-tint",
+      "Rose": "red-tint",
+      "Violet": "purple-tint",
+      "Yellow": "yellow-tint"
     },
     "Link": {
-      "activeForeground": "color-4"
+      "activeForeground": "purple"
     },
     "List": {
-      "background": "background-4",
-      "dropLineColor": "color-4",
+      "background": "background-5",
+      "dropLineColor": "green",
       "selectionBackground": "elevate-2",
       "selectionInactiveBackground": "elevate-1"
     },
@@ -208,7 +206,7 @@
         "background": "background-3"
       },
       "Tab": {
-        "selectedBackground": "color-1"
+        "selectedBackground": "red"
       }
     },
     "Separator": {
@@ -221,7 +219,7 @@
       }
     },
     "TextArea": {
-      "selectionBackground": "color-7",
+      "selectionBackground": "purple",
       "selectionForeground": "foreground"
     },
     "TextField": {
@@ -233,8 +231,8 @@
       "selectionForeground": "#FFFFFF"
     },
     "ToggleButton": {
-      "borderColor": "color-1",
-      "background": "color-3"
+      "borderColor": "red",
+      "background": "yellow"
     },
     "ToolWindow": {
       "Button": {
@@ -251,7 +249,7 @@
       "HeaderTab": {
         "hoverBackground": "elevate-2",
         "inactiveUnderlineColor": "elevate-2",
-        "underlineColor": "color-7",
+        "underlineColor": "purple",
         "underlinedTabBackground": "background-4",
         "underlinedTabInactiveBackground": "background-4",
         "underlineHeight": 3
@@ -262,12 +260,15 @@
     },
     "Tree": {
       "background": "background-2",
-      "foreground": "foreground-fade",
+      "foreground": "foreground-tint",
       "hash": "background-3",
       "selectionBackground": "elevate-2",
       "selectionForeground": "foreground",
       "selectionInactiveBackground": "elevate-1",
       "height": 30
+    },
+    "SidePanel": {
+      "background": "background-2"
     }
   }
 }
