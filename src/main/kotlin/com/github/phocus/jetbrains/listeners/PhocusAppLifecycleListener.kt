@@ -5,6 +5,7 @@ import com.intellij.ide.AppLifecycleListener
 import com.intellij.ide.navigationToolbar.ui.NavBarUIManager
 import com.intellij.openapi.util.SystemInfoRt
 import com.intellij.util.ui.JBUI
+import javassist.CannotCompileException
 import javassist.ClassPool
 import javassist.Modifier
 import javassist.expr.ExprEditor
@@ -43,15 +44,19 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
     private fun allowTabOverline() {
         UIManager.getBoolean("Tab.overline")
         if (UIManager.getBoolean("Tab.overline")) {
-            val ctClass = ClassPool(true)["com.intellij.ui.tabs.impl.JBDefaultTabPainter"]
-            ctClass.getDeclaredMethod("underlineRectangle").setBody(
-                """
-                    {
-                        return new java.awt.Rectangle($2.x, $2.y, $2.width, $3);
-                    }
-                """.trimIndent()
-            )
-            ctClass.toClass()
+            try {
+                val ctClass = ClassPool(true)["com.intellij.ui.tabs.impl.JBDefaultTabPainter"]
+                ctClass.getDeclaredMethod("underlineRectangle").setBody(
+                    """
+                        {
+                            return new java.awt.Rectangle($2.x, $2.y, $2.width, $3);
+                        }
+                    """.trimIndent()
+                )
+                ctClass.toClass()
+            } catch (exception: CannotCompileException) {
+                exception.printStackTrace()
+            }
         }
     }
 
@@ -71,20 +76,24 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
     private fun makeStripeBackgroundThemeable() {
         val backgroundColor = UIManager.getColor("Stripe.background")
         if (backgroundColor is Color) {
-            val ctClass = ClassPool(true)["com.intellij.openapi.wm.impl.Stripe"]
-            ctClass.getDeclaredMethod("paintComponent").setBody(
-                """
-                    {
-                        $1.setColor(new java.awt.Color(
-                            ${backgroundColor.red},
-                            ${backgroundColor.green},
-                            ${backgroundColor.blue}
-                        ));
-                        $1.fillRect(0, 0, getWidth(), getHeight());
-                    }
-                """.trimIndent()
-            )
-            ctClass.toClass()
+            try {
+                val ctClass = ClassPool(true)["com.intellij.openapi.wm.impl.Stripe"]
+                ctClass.getDeclaredMethod("paintComponent").setBody(
+                    """
+                        {
+                            $1.setColor(new java.awt.Color(
+                                ${backgroundColor.red},
+                                ${backgroundColor.green},
+                                ${backgroundColor.blue}
+                            ));
+                            $1.fillRect(0, 0, getWidth(), getHeight());
+                        }
+                    """.trimIndent()
+                )
+                ctClass.toClass()
+            } catch (exception: CannotCompileException) {
+                exception.printStackTrace()
+            }
         }
     }
 
@@ -94,30 +103,34 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
     private fun makeStripeButtonPaddingThemeable() {
         val padding = UIManager.getInsets("Stripe.Button.padding")
         if (padding is Insets) {
-            val cp = ClassPool(true)
-            val ctClass = cp["com.intellij.openapi.wm.impl.StripeButton"]
-            ctClass.constructors[0].instrument(
-                object : ExprEditor() {
-                    override fun edit(m: MethodCall) {
-                        if (m.methodName == "setBorder") {
-                            m.replace(
-                                """
-                                    {
-                                        $1 = com.intellij.util.ui.JBUI.Borders.empty(
-                                            ${padding.top},
-                                            ${padding.left},
-                                            ${padding.bottom},
-                                            ${padding.right}
-                                        );
-                                        ${'$'}proceed($$);
-                                    }
-                                """
-                            )
+            try {
+                val cp = ClassPool(true)
+                val ctClass = cp["com.intellij.openapi.wm.impl.StripeButton"]
+                ctClass.constructors[0].instrument(
+                    object : ExprEditor() {
+                        override fun edit(m: MethodCall) {
+                            if (m.methodName == "setBorder") {
+                                m.replace(
+                                    """
+                                        {
+                                            $1 = com.intellij.util.ui.JBUI.Borders.empty(
+                                                ${padding.top},
+                                                ${padding.left},
+                                                ${padding.bottom},
+                                                ${padding.right}
+                                            );
+                                            ${'$'}proceed($$);
+                                        }
+                                    """
+                                )
+                            }
                         }
                     }
-                }
-            )
-            ctClass.toClass()
+                )
+                ctClass.toClass()
+            } catch (exception: CannotCompileException) {
+                exception.printStackTrace()
+            }
         }
     }
 
@@ -128,18 +141,22 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
     private fun makeToolWindowHeaderHeightThemeable() {
         val height = UIManager.get("ToolWindow.Header.height")
         if (height is Int) {
-            val ctClass = ClassPool(true)["com.intellij.openapi.wm.impl.ToolWindowHeader"]
-            ctClass.getDeclaredMethod("getPreferredSize").setBody(
-                """
-                    {
-                        return new java.awt.Dimension(
-                            super.getPreferredSize().width,
-                            com.intellij.util.ui.JBUI.scale($height)
-                        );
-                    }
-                """.trimIndent()
-            )
-            ctClass.toClass()
+            try {
+                val ctClass = ClassPool(true)["com.intellij.openapi.wm.impl.ToolWindowHeader"]
+                ctClass.getDeclaredMethod("getPreferredSize").setBody(
+                    """
+                        {
+                            return new java.awt.Dimension(
+                                super.getPreferredSize().width,
+                                com.intellij.util.ui.JBUI.scale($height)
+                            );
+                        }
+                    """.trimIndent()
+                )
+                ctClass.toClass()
+            } catch (exception: CannotCompileException) {
+                exception.printStackTrace()
+            }
         }
     }
 
@@ -150,10 +167,14 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
     private fun makeSingleHeightTabsHeightThemeable() {
         val height = UIManager.get("EditorTabs.height")
         if (height is Int) {
-            val ctClass = ClassPool(true)["com.intellij.ui.tabs.impl.SingleHeightTabs\$SingleHeightLabel"]
-            ctClass.getDeclaredMethod("getPreferredHeight")
-                .setBody("{ return com.intellij.util.ui.JBUI.scale($height); }")
-            ctClass.toClass()
+            try {
+                val ctClass = ClassPool(true)["com.intellij.ui.tabs.impl.SingleHeightTabs\$SingleHeightLabel"]
+                ctClass.getDeclaredMethod("getPreferredHeight")
+                    .setBody("{ return com.intellij.util.ui.JBUI.scale($height); }")
+                ctClass.toClass()
+            } catch (exception: CannotCompileException) {
+                exception.printStackTrace()
+            }
         }
     }
 
@@ -178,25 +199,29 @@ object PhocusAppLifecycleListener : AppLifecycleListener {
         if (SystemInfoRt.isMac) return
         val arc = UIManager.get("ScrollBar.thumbArc")
         if (arc is Int) {
-            val ctClass = ClassPool(true)["com.intellij.ui.components.ScrollBarPainter\$Thumb"]
-            ctClass.getDeclaredMethod("paint").instrument(
-                object : ExprEditor() {
-                    override fun edit(m: MethodCall) {
-                        if (m.methodName == "paint") {
-                            m.replace(
-                                """
-                                    {
-                                        $2 += 1; $3 += 1; $4 -= 2; $5 -= 2;
-                                        $6 = com.intellij.util.ui.JBUI.scale($arc);
-                                        ${'$'}proceed($$);
-                                    }
-                                """.trimIndent()
-                            )
+            try {
+                val ctClass = ClassPool(true)["com.intellij.ui.components.ScrollBarPainter\$Thumb"]
+                ctClass.getDeclaredMethod("paint").instrument(
+                    object : ExprEditor() {
+                        override fun edit(m: MethodCall) {
+                            if (m.methodName == "paint") {
+                                m.replace(
+                                    """
+                                        {
+                                            $2 += 1; $3 += 1; $4 -= 2; $5 -= 2;
+                                            $6 = com.intellij.util.ui.JBUI.scale($arc);
+                                            ${'$'}proceed($$);
+                                        }
+                                    """.trimIndent()
+                                )
+                            }
                         }
                     }
-                }
-            )
-            ctClass.toClass()
+                )
+                ctClass.toClass()
+            } catch (exception: CannotCompileException) {
+                exception.printStackTrace()
+            }
         }
     }
 
